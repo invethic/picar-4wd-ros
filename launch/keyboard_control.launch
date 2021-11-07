@@ -1,0 +1,5 @@
+<launch>
+  <node name="picar_node" pkg="picar-4wd_ros" type="keyboard_control.py" output="screen">
+  
+  </node>
+</launch>
