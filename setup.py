@@ -163,6 +163,8 @@ def install():
         cmd='run_command("sudo apt-get install sysstat -y")')
     do(msg="install i2c-tools",
         cmd='run_command("sudo apt-get install i2c-tools -y")')
+    do(msg="update permissions",
+        cmd='run_command("sudo chmod og+rwx /dev/gpio*")')
 
 
     print("Setup interfaces")
@@ -171,13 +173,13 @@ def install():
     do(msg="Add I2C module",
         cmd='Modules().set("i2c-dev")') 
 
-    if ".picar-4wd" not in listdir("/home/pi"):# create pi directory and then put there all after create the folder and then create 
+    if ".picar-4wd" not in listdir("/home/ros"):# create pi directory and then put there all after create the folder and then create 
         do(msg="create .picar-4wd directory", #
-            cmd='run_command("sudo mkdir /home/pi/.picar-4wd/")') #
+            cmd='run_command("sudo mkdir /home/ros/.picar-4wd/")') #
     do(msg="copy picar-4wd-config",
-        cmd='run_command("sudo cp ./data/config /home/pi/.picar-4wd/")')
+        cmd='run_command("sudo cp ./data/config /home/ros/.picar-4wd/")')
     do(msg="change directory owner",
-        cmd='run_command("sudo chown -R ros:ros /home/pi/.picar-4wd/")') # ros = reply of whoami
+        cmd='run_command("sudo chown -R ros:ros /home/ros/.picar-4wd/")') # ros = reply of whoami
 
     print("Setup picar-4wd web-example service") 
     do(msg="copy picar-4wd web-example file",
